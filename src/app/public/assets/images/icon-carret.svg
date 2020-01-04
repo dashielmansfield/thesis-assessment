@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="6px" height="10px" viewBox="0 0 6 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Page" transform="translate(-1093.000000, -526.000000)" fill="#FFFFFF">
+            <g id="Sign-Up-Form" transform="translate(830.000000, 267.000000)">
+                <g id="Form" transform="translate(0.000000, 52.000000)">
+                    <path d="M264.137885,207.183278 C263.877854,206.938907 263.455553,206.938907 263.195522,207.183278 C262.934826,207.427025 262.934826,207.823268 263.195522,208.067015 L267.390601,212.000078 L263.195522,215.933142 C262.934826,216.176888 262.934826,216.573132 263.195522,216.816878 C263.32587,216.938751 263.496121,217 263.667036,217 C263.837287,217 264.007537,216.938751 264.137885,216.816878 L268.804478,212.441946 C269.065174,212.1982 269.065174,211.801956 268.804478,211.55821 L264.137885,207.183278 Z" id="Icon"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
