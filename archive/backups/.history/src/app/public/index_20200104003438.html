@@ -53,7 +53,7 @@
           </div>
         </div>
 
-        <form class="form" autocomplete="off">
+        <form class="form")">
           <header class="form-header">SIGN UP FOR FREE</header>
           <main class="form__main">
             <div class="form__text-fields">
@@ -133,7 +133,7 @@ function submitForm() {
   const passwordValue = passwordInput.value
   const passwordExpression = /^.{6,}$/
   const passwordValidator = passwordExpression.test(passwordValue)
-  const passwordFailureMessage = 'Password field must be at least 6 characters long.'
+  const passwordFailureMessage = 'Password field must be at least 6 characters.'
   console.log(passwordValidator ? 'Password field is valid.' : passwordFailureMessage)
   const passwordIcon = document.getElementById("form__password-icon")
   if (!passwordValidator) {

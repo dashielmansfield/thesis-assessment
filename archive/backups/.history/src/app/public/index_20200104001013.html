@@ -53,7 +53,7 @@
           </div>
         </div>
 
-        <form class="form" autocomplete="off">
+        <form class="form")">
           <header class="form-header">SIGN UP FOR FREE</header>
           <main class="form__main">
             <div class="form__text-fields">
@@ -61,7 +61,7 @@
               <input  id="form__email" class="form__text-field" placeholder="E-mail"/>
               <div class="form__password-container">
                 <input id="form__password" class="form__text-field form__text-field--password" placeholder="Password">
-                <img id="form__password-icon" class="form__text-field form__password-icon" src="assets/images/icon-hidden.svg"></img>
+                <img class="form__text-field form__password-icon" src="assets/images/icon-hidden.svg"></img>
               </div>
             </div>
             <button type="button" class="form__submit" onclick="submitForm()">Sign Up ></button>
@@ -89,67 +89,40 @@
 
     <script>
     
-// Show the menu (remove the class that overwrites display attribute to none)
 function openMenu() {
   const menu = document.getElementById('menu')
   menu.classList.remove('page-menu--hidden')
 }
 
-// Hide the menu (add the class that overwrites display attribute to none)
 function closeMenu() {
   const menu = document.getElementById('menu')
   menu.classList.add('page-menu--hidden')
 }
 
-// Perform validation and submit the form if all fields pass.
-function submitForm() {
-  console.log('Validating inputs...')
-  const nameInput = document.getElementById("form__name")
-  const nameValue = nameInput.value
-  const nameExpression = /^[a-zA-Z0-9]{2,}$/
-  const nameValidator = nameExpression.test(nameValue)
-  const nameFailureMessage =  'Name field must be alphanumeric and at least 2 characters long.'
-  console.log(nameValidator ? 'Name field is valid.' : nameFailureMessage)
-  if (!nameValidator) {
-    nameInput.classList.add('form__text-field--error')
-  } else {
-    nameInput.classList.remove('form__text-field--error')
-  }
+function submitForm(e) {
+  // validation code and submission of the form data to api goes here
+  alert('Form validation and submission happens now. Validation issues are output as alerts and to the console as no element for holding error messages was provided in the spec.')
+
+  const name = document.getElementById("form__name").value
+  const nameExpression = /^[a-zA-Z0-9]*$/
+  const nameValidator = nameExpression.test(name)
+  console.log(nameValidator ? 'Name field is valid.' : 'Name field must be alphanumeric.')
  
-  const emailInput = document.getElementById("form__email")
-  const emailValue = emailInput.value
+  const email = document.getElementById("form__email").value
   const emailExpression = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-  const emailValidator = emailExpression.test(emailValue)
-  const emailFailureMessage =  'Email field must be of form user@domain.tld, see https://www.w3resource.com/javascript/form/email-validation.php for full email address requirements.'
-  console.log(emailValidator ? 'Email field is valid.' : emailFailureMessage)
-  if (!emailValidator) {
-    emailInput.classList.add('form__text-field--error')
-  } else {
-    emailInput.classList.remove('form__text-field--error')
-  }
+  const emailValidator = emailExpression.test(email)
+  console.log(emailValidator ? 'Email field is valid.' : 'Email field must be of form user@domain.tld, see https://www.w3resource.com/javascript/form/email-validation.php for full email address requirements.')
 
-
-  const passwordInput = document.getElementById("form__password")
-  const passwordValue = passwordInput.value
+  const password = document.getElementById("form__password").value
   const passwordExpression = /^.{6,}$/
-  const passwordValidator = passwordExpression.test(passwordValue)
-  const passwordFailureMessage = 'Password field must be at least 6 characters long.'
-  console.log(passwordValidator ? 'Password field is valid.' : passwordFailureMessage)
-  const passwordIcon = document.getElementById("form__password-icon")
-  if (!passwordValidator) {
-    passwordInput.classList.add('form__text-field--error')
-    passwordIcon.classList.add('form__text-field--error')
-  } else {
-    passwordInput.classList.remove('form__text-field--error')
-    passwordIcon.classList.remove('form__text-field--error')
+  const passwordValidator = passwordExpression.test(password)
+  console.log(passwordValidator ? 'Password field is valid.' : 'Password field must be at least 6 characters.')
+
+  if (!(nameValidator && emailValidator && passwordValidator)) {
+    e.preventDefault();
   }
 
-  // If any of the validations failed, alert the user. Otherwise, send the form.
-  if (!(nameValidator && emailValidator && passwordValidator)) {
-    alert("There was a problem with your inputs. Check the console for full details.")
-  } else {
-    // Send validated form data here.
-  }
+
 }
 
     </script>

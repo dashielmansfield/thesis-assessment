@@ -134,7 +134,7 @@ body {
   border-bottom: none;
 }
 
-.form__text-field {
+.form__text-field, input[type="test"] {
   display: block;
   width: 100%;
   border: none;
@@ -145,6 +145,11 @@ body {
   line-height: 2.8rem;
   font-weight: 200;
   padding: 1.6rem;
+}
+
+
+input:-webkit-autofill {
+  background-color: rgba(255,255,255,.05) !important;
 }
 
 .form__text-field--error {
@@ -165,7 +170,7 @@ body {
 
 .form__text-field::placeholder { 
   color: rgba(255,255,255,.8);
-  opacity: .8; /* Causes text to become more pronounced when the user begins typing. */
+  opacity: .8; /* Causes text to become clearer when the user begins typing. */
 }
 
 .form__password-container {
@@ -175,7 +180,6 @@ body {
 
 .form__text-field--password {
   flex-grow: 1;
-  -webkit-text-security: disc !important; /* Masks password character. Using 'input type="password"' is a more standard solution but causes many issues for cross-browser style compatibility and is therefore not an ideal solution considering the assessment restrictions regarding external stylesheets and time.' */
 }
 
 .form__password-icon {
