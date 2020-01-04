@@ -138,7 +138,7 @@ body {
   display: block;
   width: 100%;
   border: none;
-  background-color: rgba(255,255,255,.05);
+  background-color: rgba(255,255,255,.05) !important;
   font-family: 'Roboto';
   color: rgba(255,255,255,.8);
   font-size: 1.8rem;
