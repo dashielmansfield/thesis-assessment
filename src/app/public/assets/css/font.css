@@ -31,3 +31,11 @@
   font-weight: 200;
   font-display: optional;
 }
+
+
+@font-face {
+  font-family: 'Password';
+  src: url('/assets/fonts/password.ttf') format('truetype');
+  font-weight: 200;
+  font-display: optional;
+}

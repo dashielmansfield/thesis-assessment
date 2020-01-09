@@ -47,12 +47,11 @@ html, body {
 }
 
 body {
-  font-size: 1.6rem; /* Set the default font-size to 16px at base zoom level. This works because the :root element font-size is set to 62.5%, which causes 1rem to equal 10px at base zoom level and 1.6rem to equal 16px. */
+  font-size: 1.6rem; /* with :root font-size, 1rem = 10px at base zoom level so this sets default font-size for the page at 16px. */
   line-height: 1.2;
   font-family: 'Roboto';
   position: relative;
-  min-width: 35rem;
-  overflow: scroll;
+  min-width: 20rem;
 }
 
 .app {
@@ -70,14 +69,6 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.page-header, .page-footer {
-  flex-shrink: 0;
-}
-
-.page-main {
-  flex: 1 0 auto;
 }
 
 /* PAGE > PAGE BACKGROUND */
@@ -131,17 +122,15 @@ body {
   font-weight: 500;
   letter-spacing: .2ch;
   padding: 1rem 0;
-  min-width: 30rem;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 
 /* PAGE > PAGE MAIN  */
 .page-main {
+  flex-grow: 1;
   flex-wrap: wrap;
   justify-content: center;
-  align-content: center; /* Center content vertically in available space. Note that the reference material provided does not specify how content should be aligned vertically when the page height exceeds the content height. */
+  align-content: flex-start; /* vertically pull content to top (flex-start) /middle (center) / bottom (flex-bottom) of page*/
 }
 
 .hero, .form {
@@ -153,12 +142,13 @@ body {
 /* PAGE > PAGE MAIN > HERO */
 .hero {
   width: 55rem;
-  min-width: 30rem;
+}
+
+.hero__copy {
   font-family: 'Avenir Next', serif;
 }
 
-.hero > h1 {
-  font-family: inherit;
+.hero__copy--large {
   font-size: 7.2rem;
   font-weight: 500;
   letter-spacing: -.04ch;
@@ -167,8 +157,7 @@ body {
 }
 
 
-.hero > h2 {
-  font-family: inherit;
+.hero__copy--small {
   font-size: 2.2rem;
   line-height: 3.4rem;
   font-weight: 500;
@@ -179,15 +168,14 @@ body {
 /* PAGE > PAGE MAIN > FORM */
 .form {
   width: 46rem;
-  min-width: 30rem;
 }
 
-.form > header, .form > footer {
+.form-header, .form-footer {
   text-align: center;
   font-family: 'Roboto';
 }
 
-.form > header {
+.form-header {
   margin-bottom: 3rem;
   font-family: 'Avenir Next', sans-serif;
   font-size: 1.6rem;
@@ -196,13 +184,13 @@ body {
   letter-spacing: .2rem;
 }
 
-.form__inputs {
+.form__text-fields {
   border: 2px solid rgba(255,255,255,.3);
   border-radius: 4px 4px 0 0;
   border-bottom: none;
 }
 
-.form__textbox {
+.form__text-field {
   display: block;
   width: 100%;
   border: none;
@@ -215,7 +203,7 @@ body {
   padding: 1.6rem;
 }
 
-.form__textbox--error {
+.form__text-field--error {
   background-color: rgba(255,127,127,.2);
   font-family: 'Roboto';
   color: rgba(255,255,255,.8);
@@ -226,15 +214,14 @@ body {
 }
 
 
-.form__inputs > .form__textbox:nth-child(2) {
+.form__text-fields > .form__text-field:nth-child(2) {
   border-top: 2px solid rgba(255,255,255,.3);
   border-bottom: 2px solid rgba(255,255,255,.3);
 }
 
-/* Differentiate placeholder text from user input text by making placeholder text slightly less pronounced. */
-.form__textbox::placeholder { 
+.form__text-field::placeholder { 
   color: rgba(255,255,255,.8);
-  opacity: .8; 
+  opacity: .8; /* Causes text to become more pronounced when the user begins typing. */
 }
 
 .form__password-container {
@@ -242,20 +229,13 @@ body {
   flex-direction: row;
 }
 
-.form__password{
+.form__text-field--password {
   flex-grow: 1;
 }
 
-.form__password--secure {
-  /* Masks password character. Using `<input type="password">` is a more ideal solution but causes many issues for cross-browser style compatibility (for example, browser-specific styles applied upon autofill). Addressing such issues in a robust manner is very labor-intensive without the use of external stylesheets, and so the most reliable solution in the context of this assessment is to simply use css attributes such as -webkit-text-security, etc. */
-  text-security: disc !important;
-  font-family: 'Password';
-}
-
-
-/* Ensure placeholder text does not also secure its text. */
-.form__password--secure::placeholder {
-  font-family: 'Roboto';
+.form__text-field--password-hidetext {
+  -webkit-text-security: disc !important; /* Masks password character. Using 'input type="password"' is a more standard solution but causes many issues for cross-browser style compatibility and is therefore not an ideal solution considering the assessment restrictions regarding external stylesheets and time.' */
+  -moz-text-security: disc !important;
 }
 
 .form__password-icon {
@@ -299,25 +279,9 @@ body {
   background-color: #CD0C79;
 }
 
-.form > footer {
+.form-footer {
   margin-top: 2rem;
-}
-
-.form__messages {
-  color: rgba(255, 255, 255, .6);
-  background-color: rgba(255,128,128,.3);
-  border: 1px solid rgba(255, 64, 64, .4);
-  border-radius: 4px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-.form__messages--hidden {
-  display: none;
-}
-
-.form__messages > div {
-  padding: .5em;
+ 
 }
 
 .form__terms-copy {
@@ -327,8 +291,6 @@ body {
   line-height: 2.4rem;
   font-weight: 400;
 }
-
-
 
 /* PAGE > PAGE MENU */
 .page-menu {
@@ -410,8 +372,8 @@ body {
 
 
 /* MEDIA QUERIES */
-/* See https://zellwk.com/blog/media-query-units/ for more info on using em as base unit in media queries */
-@media (max-width: 60em) {  
+
+@media (max-width: 100rem) {
   .topnav {
     display: none; /* remove topnav to avoid overflowing page-header  */
   }

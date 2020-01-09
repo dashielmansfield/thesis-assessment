@@ -16,26 +16,43 @@
         </div>
 
         <div id="menu" class="page-menu page-menu--hidden">
-          <div class="menu-container">
+          <div class="page-menu__container">
             <img id="menu-close" class="menu-icon page-menu__close" src="assets/images/icon-menu.svg" onclick="closeMenu()"/>
             <ul class="nav menunav"> 
-              <li href="#" class="nav__navitem">About</li>
-              <li href="#" class="nav__navitem">Integrations</li>
-              <li href="#" class="nav__navitem">Pricing</li>
-              <li href="#" class="nav__navitem">Contacts</li>
+              <li class="nav__navitem">
+                <a href="#" title="About" alt="About">About</a>
+              </li>
+              <li class="nav__navitem">
+                <a href="#" title="Integratons" alt="Integratons">Integrations</a>
+              </li>
+              <li class="nav__navitem">
+                <a href="#" title="Pricing" alt="Pricing">Pricing</a>
+              </li>
+              <li class="nav__navitem">
+                <a href="#" title="Contacts" alt="Contacts">Contacts</a>
+              </li>
             </ul>
           </div>
         </div>
         
         <header class="page-header"> 
         
-        <img class="logo" src="assets/images/logo.svg"/>
+        
+          <a href="#" title="Home" alt="Home"><img class="logo" src="assets/images/logo.svg" alt="Logo"/></a>
 
         <ul class="nav topnav"> 
-          <li href="#" class="nav__navitem">About</li>
-          <li href="#" class="nav__navitem">Integrations</li>
-          <li href="#" class="nav__navitem">Pricing</li>
-          <li href="#" class="nav__navitem">Contacts</li>
+          <li class="nav__navitem">
+            <a href="#" title="About" alt="About">About</a>
+          </li>
+          <li class="nav__navitem">
+            <a href="#" title="Integrations" alt="Integrations">Integrations</a>
+          </li>
+          <li class="nav__navitem">
+            <a href="#" title="Pricing" alt="Pricing">Pricing</a>
+          </li>
+          <li class="nav__navitem">
+            <a href="#" title="Contacts" alt="Contacts">Contacts</a>
+          </li>
         </ul>
       
         <img id="menu-open" class="menu-icon" src="assets/images/icon-menu.svg"  onclick="openMenu()"/>
@@ -45,43 +62,54 @@
       <main class="page-main">
       
         <div class="hero">
-          <div class="hero__copy hero__copy--large">
-            Simple Way to Organize Your Inspirations
-          </div>
-          <div class="hero__copy hero__copy--small">
-            I think what motivates people is not great hate, but great love for other people.
-          </div>
+          <h1>Simple Way to Organize Your Inspirations</h1>
+          <h2>I think what motivates people is not great hate, but great love for other people.</h2>
         </div>
 
         <form class="form" autocomplete="off">
-          <header class="form-header">SIGN UP FOR FREE</header>
-          <main class="form__main">
-            <div class="form__text-fields">
-              <input id="form__name" class="form__text-field" placeholder="Name" />
-              <input  id="form__email" class="form__text-field" placeholder="E-mail"/>
+          <header><span>SIGN UP FOR FREE</span></header>
+          <main>
+            <div class="form__inputs">
+              <input autocomplete="off" id="form__name" class="form__textbox" placeholder="Name" />
+              <input autocomplete="off"  id="form__email" class="form__textbox" placeholder="E-mail"/>
               <div class="form__password-container">
-                <input id="form__password" class="form__text-field form__text-field--password" placeholder="Password">
-                <img id="form__password-icon" class="form__text-field form__password-icon" src="assets/images/icon-hidden.svg"></img>
+                <input autocomplete="off" id="form__password" class="form__textbox form__password form__password--secure" placeholder="Password" js-data--secure="true">
+                <a title="Show password" alt="Show password">
+                  <img onclick="togglePassword()" id="form__password-icon" class="form__textbox form__password-icon" src="assets/images/icon-hidden.svg" alt="Show password" />
+                </a>
               </div>
             </div>
-            <button type="button" class="form__submit" onclick="submitForm()">Sign Up ></button>
+            <button title="Sign up" alt="Sign up" type="button" class="form__submit" onclick="submitForm()">
+              <span>Sign Up <span>
+              <img class="form__submit-icon" src="assets/images/icon-carret.svg" alt="Submit"></img>
+            </button>
           </main>
-          <footer class="form-footer">
-              <div class="form__terms-copy">By clicking "Sign up" I agree to our</div>
-              <div class="form__terms-link">Terms of Service</div>
+          <footer>
+              <div id="form__messages" class="form__messages form__messages--hidden">
+              </div>
+              <div class="form__terms-copy"><span>By clicking "Sign up" I agree to our</span></div>
+              <div class="form__terms-link"><a href="#" title="Terms of service" alt="Terms of service">Terms of Service</a></div>
           </footer>
         </form>
       </main>
 
       <footer class="page-footer">
         <div class="copyright"> 
-            © 2016 Stamp. All Rights Reserved
+            <span>© 2016 Stamp. All Rights Reserved</span>
         </div>
         <ul class="nav bottomnav">
-          <li href="#" class="nav__navitem">CONTACT</li>
-          <li href="#" class="nav__navitem">HELP</li>
-          <li href="#" class="nav__navitem">TERMS OF USE</li>
-          <li href="#" class="nav__navitem">PRIVACY POLICY</li>
+          <li class="nav__navitem">
+            <a href="#" title="Contact" alt="Contact">CONTACT</a>
+          </li>
+          <li class="nav__navitem">
+            <a href="#" title="Help" alt="Help">HELP</a>
+          </li>
+          <li class="nav__navitem">
+            <a href="#" title="Terms of use" alt="Terms of use">TERMS OF USE</a>
+          </li>
+          <li class="nav__navitem">
+            <a href="#" title="Privacy policy" alt="Privacy policy">PRIVACY POLICY</a>
+          </li>
         </ul>
       </footer>
 
@@ -101,6 +129,26 @@ function closeMenu() {
   menu.classList.add('page-menu--hidden')
 }
 
+// Toggle hiding of password input characters (add/remove class that overwrites -webkit-text-security css attribute to disc, store whether hidden or not as js-data--secure element attribute)
+function togglePassword() {
+  const password = document.getElementById('form__password')
+  const isTextHidden = password.getAttribute('js-data--secure')
+  const passwordIcon = document.getElementById('form__password-icon')
+  console.log(isTextHidden)
+  if (isTextHidden == 'true') {
+    console.log('password text is hidden, unhiding...');
+    password.classList.remove('form__password--secure')
+    password.setAttribute('js-data--secure', 'false')
+    passwordIcon.setAttribute('title', 'Hide password')
+  } else {
+    console.log('password text is not hidden, hiding...');
+    password.classList.add('form__password--secure')
+    password.setAttribute('js-data--secure', 'true')
+    passwordIcon.setAttribute('title', 'Show password')
+  }
+
+}
+
 // Perform validation and submit the form if all fields pass.
 function submitForm() {
   console.log('Validating inputs...')
@@ -108,24 +156,24 @@ function submitForm() {
   const nameValue = nameInput.value
   const nameExpression = /^[a-zA-Z0-9]{2,}$/
   const nameValidator = nameExpression.test(nameValue)
-  const nameFailureMessage =  'Name field must be alphanumeric and at least 2 characters long.'
+  const nameFailureMessage =  'Name field must be be at least 2 characters long, and may only contain alphanumeric characters'
   console.log(nameValidator ? 'Name field is valid.' : nameFailureMessage)
   if (!nameValidator) {
-    nameInput.classList.add('form__text-field--error')
+    nameInput.classList.add('form__textbox--error')
   } else {
-    nameInput.classList.remove('form__text-field--error')
+    nameInput.classList.remove('form__textbox--error')
   }
  
   const emailInput = document.getElementById("form__email")
   const emailValue = emailInput.value
   const emailExpression = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
   const emailValidator = emailExpression.test(emailValue)
-  const emailFailureMessage =  'Email field must be of form user@domain.tld, see https://www.w3resource.com/javascript/form/email-validation.php for full email address requirements.'
+  const emailFailureMessage =  'Email field must be of form user@domain.tld'
   console.log(emailValidator ? 'Email field is valid.' : emailFailureMessage)
   if (!emailValidator) {
-    emailInput.classList.add('form__text-field--error')
+    emailInput.classList.add('form__textbox--error')
   } else {
-    emailInput.classList.remove('form__text-field--error')
+    emailInput.classList.remove('form__textbox--error')
   }
 
 
@@ -133,21 +181,50 @@ function submitForm() {
   const passwordValue = passwordInput.value
   const passwordExpression = /^.{6,}$/
   const passwordValidator = passwordExpression.test(passwordValue)
-  const passwordFailureMessage = 'Password field must be at least 6 characters long.'
+  const passwordFailureMessage = 'Password field must be at least 6 characters long'
   console.log(passwordValidator ? 'Password field is valid.' : passwordFailureMessage)
   const passwordIcon = document.getElementById("form__password-icon")
   if (!passwordValidator) {
-    passwordInput.classList.add('form__text-field--error')
-    passwordIcon.classList.add('form__text-field--error')
+    passwordInput.classList.add('form__textbox--error')
+    passwordIcon.classList.add('form__textbox--error')
   } else {
-    passwordInput.classList.remove('form__text-field--error')
-    passwordIcon.classList.remove('form__text-field--error')
+    passwordInput.classList.remove('form__textbox--error')
+    passwordIcon.classList.remove('form__textbox--error')
   }
+
+  const errMsg = document.getElementById('form__messages')
+  var child = errMsg.lastElementChild;  
+        while (child) { 
+            errMsg.removeChild(child); 
+            child = errMsg.lastElementChild; 
+        } 
+  
+
 
   // If any of the validations failed, alert the user. Otherwise, send the form.
   if (!(nameValidator && emailValidator && passwordValidator)) {
-    alert("There was a problem with your inputs. Check the console for full details.")
+    errMsg.classList.remove('form__messages--hidden')
+
+    if (!nameValidator) {
+      const nameMsg = document.createElement('div')
+      nameMsg.textContent = nameFailureMessage
+      errMsg.appendChild(nameMsg)
+    }
+
+    if (!emailValidator) {
+      const emailMsg = document.createElement('div')
+      emailMsg.textContent = emailFailureMessage
+      errMsg.appendChild(emailMsg)
+    }
+
+    if (!passwordValidator) {
+      const passwordMsg = document.createElement('div')
+      passwordMsg.textContent = passwordFailureMessage
+      errMsg.appendChild(passwordMsg)
+    }
   } else {
+    errMsg.classList.add('form__messages--hidden')
+
     // Send validated form data here.
   }
 }
