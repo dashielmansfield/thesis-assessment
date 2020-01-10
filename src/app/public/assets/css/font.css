@@ -1,28 +1,10 @@
-
 @font-face {
   font-family: 'Roboto';
   src: local('Roboto-Regular'), 
     url('/assets/fonts/Roboto-Regular.ttf') format('truetype');
-  font-display: optional;
-
-  }
-
-@font-face {
-  font-family: 'Roboto';
-  src: local('Roboto-Bold'), 
-    url('/assets/fonts/Roboto-Bold.ttf') format('truetype');
-  font-style: bold;
+  font-weight: 400;
   font-display: optional;
 }
-
-@font-face {
-  font-family: 'Roboto';
-  src: local('Roboto-Italic'), 
-    url('/assets/fonts/Roboto-Italic.ttf') format('truetype');
-  font-style: italic;
-  font-display: optional;
-}
-
 
 @font-face {
   font-family: 'Roboto';
@@ -32,10 +14,8 @@
   font-display: optional;
 }
 
-
 @font-face {
   font-family: 'Password';
   src: url('/assets/fonts/password.ttf') format('truetype');
-  font-weight: 200;
-  font-display: optional;
+  font-display: block; /* In the event this font is loading slowly, render the text using an invisible fallback font. This ensures that the actual text content itself will remain obfuscated from view while the font loads. */
 }

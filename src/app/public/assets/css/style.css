@@ -49,7 +49,7 @@ html, body {
 body {
   font-size: 1.6rem; /* Set the default font-size to 16px at base zoom level. This works because the :root element font-size is set to 62.5%, which causes 1rem to equal 10px at base zoom level and 1.6rem to equal 16px. */
   line-height: 1.2;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   position: relative;
   min-width: 35rem;
   overflow: scroll;
@@ -184,7 +184,7 @@ body {
 
 .form > header, .form > footer {
   text-align: center;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
 }
 
 .form > header {
@@ -207,7 +207,7 @@ body {
   width: 100%;
   border: none;
   background-color: rgba(255,255,255,.05);
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   color: rgba(255,255,255,.8);
   font-size: 1.8rem;
   line-height: 2.8rem;
@@ -217,7 +217,7 @@ body {
 
 .form__textbox--error {
   background-color: rgba(255,127,127,.2);
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   color: rgba(255,255,255,.8);
   font-size: 1.8rem;
   line-height: 2.8rem;
@@ -248,14 +248,14 @@ body {
 
 .form__password--secure {
   /* Masks password character. Using `<input type="password">` is a more ideal solution but causes many issues for cross-browser style compatibility (for example, browser-specific styles applied upon autofill). Addressing such issues in a robust manner is very labor-intensive without the use of external stylesheets, and so the most reliable solution in the context of this assessment is to simply use css attributes such as -webkit-text-security, etc. */
-  text-security: disc !important;
+  -webkit-text-security: disc !important;
   font-family: 'Password';
 }
 
 
 /* Ensure placeholder text does not also secure its text. */
 .form__password--secure::placeholder {
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
 }
 
 .form__password-icon {
